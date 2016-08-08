@@ -1,0 +1,13 @@
+---
+# tasks file for apache
+
+- name: install httpd
+  yum: name=httpd state=latest
+
+- name: place index.html
+  copy: src=../files/index.html dest=/var/www/html
+
+- name: restart httpd
+  become: true
+  become_user: root
+  service: name=httpd state=restarted

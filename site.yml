@@ -3,3 +3,8 @@
   roles: 
     - common
     - apache
+
+- hosts: ci_servers
+  roles:
+    - geerlingguy.jenkins
+    - jenkins.jobs

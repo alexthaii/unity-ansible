@@ -6,5 +6,6 @@
 
 - hosts: ci_servers
   roles:
+    - git
     - geerlingguy.jenkins
     - jenkins.jobs

@@ -1,0 +1,4 @@
+- name: Download Unity3D 5.4.0f3
+  win_get_url:
+    url: 'https://store.unity.com/download/thank-you?thank-you=personal&os=win&nid=92'
+    dest: 'C:\\Unity3DSetup.exe'

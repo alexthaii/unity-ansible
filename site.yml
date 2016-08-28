@@ -9,3 +9,7 @@
     - git
     - geerlingguy.jenkins
     - jenkins.jobs
+
+- hosts: windows_build_servers
+  roles:
+      - unity3d

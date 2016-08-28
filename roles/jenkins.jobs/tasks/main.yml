@@ -7,11 +7,14 @@
 - name: Copy seed template to host
   copy: src=../templates/create_seed.xml dest=/var/lib/jenkins/tmp_templates/create_seed.xml
 
+- name: Check for existing seed job
+  shell: java -jar {{ jenkins_jar_location }} -s http://localhost:8080/ list-jobs
+  register: jenkins_jobs
+
 - name: Create seed job
   shell: java -jar {{ jenkins_jar_location }} -s http://localhost:8080 create-job seed_job < /var/lib/jenkins/tmp_templates/create_seed.xml
-  register: create_seed_result
   ignore_errors: yes
-  when: "'already exists' in create_seed_result.stderr"
+  when: jenkins_jobs.stdout.find('seed_job') != -1
 
 - name: Delete temporary templates folder
   file: path=/var/lib/jenkins/tmp_templates state=absent
